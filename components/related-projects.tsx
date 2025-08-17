@@ -1,13 +1,10 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
-interface RelatedProjectsProps {
-  slug: string
-}
-
-export function RelatedProjects({ slug }: RelatedProjectsProps) {
+export function RelatedProjects() {
   // In a real app, this would fetch related projects based on slug
   const relatedProjects = [
     {
@@ -48,11 +45,14 @@ export function RelatedProjects({ slug }: RelatedProjectsProps) {
               className="group overflow-hidden border-0 shadow-lg bg-card hover:shadow-xl transition-all duration-300"
             >
               <div className="relative">
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                <div className="w-full h-48 relative">
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                 <div className="absolute top-4 left-4">
                   <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
                     {project.category}

@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Linkedin, Mail } from "lucide-react"
 
@@ -58,11 +59,14 @@ export function TeamSection() {
               <div className="md:flex">
                 {/* Image */}
                 <div className="md:w-1/2">
-                  <img
-                    src={member.image || "/placeholder.svg"}
-                    alt={member.name}
-                    className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <div className="w-full h-64 md:h-full relative overflow-hidden">
+                    <Image
+                      src={member.image || "/placeholder.svg"}
+                      alt={member.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -81,10 +85,10 @@ export function TeamSection() {
                     </div>
 
                     <div className="flex space-x-3 pt-2">
-                      <button className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors duration-200">
+                      <button aria-label={`Visit ${member.name} on LinkedIn`} className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors duration-200">
                         <Linkedin className="h-4 w-4 text-primary" />
                       </button>
-                      <button className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors duration-200">
+                      <button aria-label={`Email ${member.name}`} className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors duration-200">
                         <Mail className="h-4 w-4 text-primary" />
                       </button>
                     </div>
@@ -114,8 +118,8 @@ export function TeamSection() {
             </div>
             <div>
               <h5 className="font-semibold text-foreground mb-2">Client-Centric Approach</h5>
-              <p className="text-muted-foreground text-sm">
-                Every decision we make is guided by our commitment to exceeding our clients' expectations and bringing
+                <p className="text-muted-foreground text-sm">
+                Every decision we make is guided by our commitment to exceeding our clients&apos; expectations and bringing
                 their dreams to life.
               </p>
             </div>

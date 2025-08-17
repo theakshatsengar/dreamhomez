@@ -1,11 +1,8 @@
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Star } from "lucide-react"
 
-interface ProjectTestimonialProps {
-  slug: string
-}
-
-export function ProjectTestimonial({ slug }: ProjectTestimonialProps) {
+export function ProjectTestimonial() {
   // In a real app, this would fetch testimonial based on slug
   const testimonial = {
     content:
@@ -32,15 +29,13 @@ export function ProjectTestimonial({ slug }: ProjectTestimonialProps) {
             </div>
 
             <blockquote className="text-xl lg:text-2xl text-foreground leading-relaxed mb-8 font-serif italic">
-              "{testimonial.content}"
+              &quot;{testimonial.content}&quot;
             </blockquote>
 
             <div className="flex items-center justify-center space-x-4">
-              <img
-                src={testimonial.image || "/placeholder.svg"}
-                alt={testimonial.author}
-                className="w-16 h-16 rounded-full object-cover"
-              />
+              <div className="w-16 h-16 relative rounded-full overflow-hidden">
+                <Image src={testimonial.image || "/placeholder.svg"} alt={testimonial.author} fill className="object-cover" />
+              </div>
               <div className="text-left">
                 <div className="font-semibold text-foreground">{testimonial.author}</div>
                 <div className="text-sm text-muted-foreground">{testimonial.role}</div>

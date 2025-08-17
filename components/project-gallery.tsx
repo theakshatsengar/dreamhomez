@@ -1,15 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
-interface ProjectGalleryProps {
-  slug: string
-}
-
-export function ProjectGallery({ slug }: ProjectGalleryProps) {
+export function ProjectGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
 
   // In a real app, this would fetch gallery images based on slug
@@ -85,11 +82,14 @@ export function ProjectGallery({ slug }: ProjectGalleryProps) {
                 onClick={() => openLightbox(index)}
               >
                 <div className="relative">
-                  <img
-                    src={image.src || "/placeholder.svg"}
-                    alt={image.alt}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <div className="w-full h-64 relative">
+                    <Image
+                      src={image.src || "/placeholder.svg"}
+                      alt={image.alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <p className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -107,11 +107,15 @@ export function ProjectGallery({ slug }: ProjectGalleryProps) {
       {selectedImage !== null && (
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
           <div className="relative max-w-4xl w-full">
-            <img
-              src={images[selectedImage].src || "/placeholder.svg"}
-              alt={images[selectedImage].alt}
-              className="w-full h-auto max-h-[80vh] object-contain"
-            />
+            <div className="w-full h-auto max-h-[80vh]">
+              <Image
+                src={images[selectedImage].src || "/placeholder.svg"}
+                alt={images[selectedImage].alt}
+                width={1200}
+                height={800}
+                className="w-full h-auto object-contain"
+              />
+            </div>
 
             <div className="absolute bottom-4 left-4 right-4 text-center">
               <p className="text-white text-lg font-medium">{images[selectedImage].caption}</p>

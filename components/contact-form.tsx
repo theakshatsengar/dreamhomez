@@ -46,7 +46,7 @@ export function ContactForm() {
               <CheckCircle className="h-16 w-16 text-primary mx-auto mb-6" />
               <h2 className="text-2xl font-serif font-semibold text-foreground mb-4">Thank You!</h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                We've received your message and will get back to you within 24 hours. We're excited to learn more about
+                We&apos;ve received your message and will get back to you within 24 hours. We&apos;re excited to learn more about
                 your project and discuss how we can help bring your vision to life.
               </p>
               <Button onClick={() => setIsSubmitted(false)} variant="outline">
@@ -62,10 +62,10 @@ export function ContactForm() {
   return (
     <section className="py-16 lg:py-24 bg-muted/30">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
+          <div className="text-center mb-8">
           <h2 className="text-3xl lg:text-4xl font-serif text-foreground mb-4">Get In Touch</h2>
           <p className="text-lg text-muted-foreground">
-            Fill out the form below and we'll get back to you within 24 hours.
+            Fill out the form below and we&apos;ll get back to you within 24 hours.
           </p>
         </div>
 
@@ -193,7 +193,7 @@ export function ContactForm() {
                   onCheckedChange={(checked) => handleInputChange("newsletter", checked as boolean)}
                 />
                 <Label htmlFor="newsletter" className="text-sm text-muted-foreground">
-                  I'd like to receive design inspiration and updates via email
+                  I&apos;d like to receive design inspiration and updates via email
                 </Label>
               </div>
 
@@ -204,7 +204,7 @@ export function ContactForm() {
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                By submitting this form, you agree to our privacy policy. We'll never share your information with third
+                By submitting this form, you agree to our privacy policy. We&apos;ll never share your information with third
                 parties.
               </p>
             </form>

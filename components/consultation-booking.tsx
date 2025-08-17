@@ -81,7 +81,7 @@ export function ConsultationBooking() {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">
-            Not sure which consultation is right for you? We're happy to help you choose.
+            Not sure which consultation is right for you? We&apos;re happy to help you choose.
           </p>
           <Button variant="outline" size="lg">
             <Calendar className="mr-2 h-5 w-5" />

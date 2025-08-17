@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Home, Building2, Sparkles, Hammer, Eye, Users } from "lucide-react"
@@ -77,11 +78,14 @@ export function ServicesList() {
               <div className="md:flex">
                 {/* Image */}
                 <div className="md:w-2/5">
-                  <img
-                    src={service.image || "/placeholder.svg"}
-                    alt={service.title}
-                    className="w-full h-48 md:h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <div className="w-full h-48 md:h-full relative overflow-hidden">
+                    <Image
+                      src={service.image || "/placeholder.svg"}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -97,7 +101,7 @@ export function ServicesList() {
                     <p className="text-muted-foreground leading-relaxed text-sm">{service.description}</p>
 
                     <div>
-                      <h5 className="font-semibold text-foreground mb-2 text-sm">What's Included:</h5>
+                      <h5 className="font-semibold text-foreground mb-2 text-sm">What&apos;s Included:</h5>
                       <ul className="space-y-1">
                         {service.features.map((feature, featureIndex) => (
                           <li key={featureIndex} className="text-xs text-muted-foreground flex items-center">

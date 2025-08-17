@@ -1,13 +1,10 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Calendar, Clock } from "lucide-react"
 
-interface RelatedPostsProps {
-  slug: string
-}
-
-export function RelatedPosts({ slug }: RelatedPostsProps) {
+export function RelatedPosts() {
   // In a real app, this would fetch related posts based on slug
   const relatedPosts = [
     {
@@ -54,11 +51,14 @@ export function RelatedPosts({ slug }: RelatedPostsProps) {
               className="group overflow-hidden border-0 shadow-lg bg-card hover:shadow-xl transition-all duration-300"
             >
               <div className="relative">
-                <img
-                  src={post.image || "/placeholder.svg"}
-                  alt={post.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                <div className="w-full h-48 relative">
+                  <Image
+                    src={post.image || "/placeholder.svg"}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                 <div className="absolute top-4 left-4">
                   <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
                     {post.category}

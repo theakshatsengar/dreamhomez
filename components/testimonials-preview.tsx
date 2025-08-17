@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Star } from "lucide-react"
 
@@ -61,15 +62,18 @@ export function TestimonialsPreview() {
             </div>
 
             <blockquote className="text-lg lg:text-xl text-foreground leading-relaxed mb-8 font-serif italic">
-              "{testimonials[currentTestimonial].content}"
+              &quot;{testimonials[currentTestimonial].content}&quot;
             </blockquote>
 
             <div className="flex items-center justify-center space-x-4">
-              <img
-                src={testimonials[currentTestimonial].image || "/placeholder.svg"}
-                alt={testimonials[currentTestimonial].name}
-                className="w-16 h-16 rounded-full object-cover"
-              />
+              <div className="w-16 h-16 relative rounded-full overflow-hidden">
+                <Image
+                  src={testimonials[currentTestimonial].image || "/placeholder.svg"}
+                  alt={testimonials[currentTestimonial].name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <div className="text-left">
                 <div className="font-semibold text-foreground">{testimonials[currentTestimonial].name}</div>
                 <div className="text-sm text-muted-foreground">{testimonials[currentTestimonial].role}</div>
@@ -83,6 +87,7 @@ export function TestimonialsPreview() {
           {testimonials.map((_, index) => (
             <button
               key={index}
+              aria-label={`Show testimonial ${index + 1}`}
               className={`w-3 h-3 rounded-full transition-colors duration-200 ${
                 index === currentTestimonial ? "bg-primary" : "bg-border"
               }`}

@@ -1,12 +1,9 @@
+import Image from "next/image"
 import { ArrowLeft, MapPin, Calendar, Tag } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
-interface ProjectHeroProps {
-  slug: string
-}
-
-export function ProjectHero({ slug }: ProjectHeroProps) {
+export function ProjectHero() {
   // In a real app, this would fetch project data based on slug
   const project = {
     title: "Modern Manhattan Penthouse",
@@ -22,7 +19,7 @@ export function ProjectHero({ slug }: ProjectHeroProps) {
     <section className="relative pt-20 pb-16 lg:pt-28 lg:pb-24">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-full object-cover" />
+        <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
         <div className="absolute inset-0 bg-black/40" />
       </div>
 

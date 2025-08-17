@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Star, Quote } from "lucide-react"
 
@@ -123,15 +124,13 @@ export function TestimonialsGrid() {
                 </div>
 
                 <blockquote className="text-foreground leading-relaxed mb-6 font-serif italic">
-                  "{testimonial.content}"
+                  &quot;{testimonial.content}&quot;
                 </blockquote>
 
                 <div className="flex items-center space-x-4">
-                  <img
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.author}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
+                  <div className="w-12 h-12 relative rounded-full overflow-hidden">
+                    <Image src={testimonial.image || "/placeholder.svg"} alt={testimonial.author} fill className="object-cover" />
+                  </div>
                   <div>
                     <div className="font-semibold text-foreground">{testimonial.author}</div>
                     <div className="text-sm text-muted-foreground">{testimonial.role}</div>
