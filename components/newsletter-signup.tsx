@@ -26,7 +26,7 @@ export function NewsletterSignup() {
           <CheckCircle className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-3xl lg:text-4xl font-serif font-semibold mb-4">Thank You for Subscribing!</h2>
           <p className="text-lg opacity-90">
-            You'll receive our latest design insights and inspiration directly in your inbox.
+            You&apos;ll receive our latest design insights and inspiration directly in your inbox.
           </p>
         </div>
       </section>

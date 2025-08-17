@@ -112,7 +112,7 @@ export function ContactInfo() {
 
             <Card className="border-0 shadow-sm bg-card">
               <CardContent className="p-6">
-                <h4 className="font-semibold text-foreground mb-2">What's included in the consultation?</h4>
+                <h4 className="font-semibold text-foreground mb-2">What&apos;s included in the consultation?</h4>
                 <p className="text-sm text-muted-foreground">
                   Our complimentary consultation includes space assessment, design direction, budget planning, and a
                   detailed proposal for your project.

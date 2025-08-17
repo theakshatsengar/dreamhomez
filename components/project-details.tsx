@@ -1,10 +1,7 @@
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 
-interface ProjectDetailsProps {
-  slug: string
-}
-
-export function ProjectDetails({ slug }: ProjectDetailsProps) {
+export function ProjectDetails() {
   // In a real app, this would fetch project details based on slug
   const projectDetails = {
     concept:

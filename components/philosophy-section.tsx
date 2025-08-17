@@ -51,9 +51,9 @@ export function PhilosophySection() {
         {/* Philosophy Statement */}
         <div className="bg-muted/30 p-8 lg:p-12 rounded-lg">
           <blockquote className="text-xl lg:text-2xl font-serif text-foreground text-center leading-relaxed italic">
-            "We believe that great design is not about following trends, but about creating timeless spaces that evolve
+            &quot;We believe that great design is not about following trends, but about creating timeless spaces that evolve
             with their inhabitants. Every room should tell a story, evoke emotion, and enhance the daily rituals of
-            life."
+            life.&quot;
           </blockquote>
           <div className="text-center mt-6">
             <div className="font-semibold text-foreground">Elena Rodriguez</div>

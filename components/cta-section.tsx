@@ -7,7 +7,7 @@ export function CTASection() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl lg:text-4xl font-serif font-semibold mb-6">Ready to Transform Your Space?</h2>
         <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
-          Let's discuss your vision and create a space that truly reflects your style. Schedule a complimentary
+          Let&apos;s discuss your vision and create a space that truly reflects your style. Schedule a complimentary
           consultation to get started.
         </p>
 

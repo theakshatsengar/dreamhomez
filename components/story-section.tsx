@@ -11,25 +11,25 @@ export function StorySection() {
             </div>
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
-              <p className="text-lg">
+                <p className="text-lg">
                 Founded in 2012 by visionary designer Elena Rodriguez, Dream Homez began as a boutique studio with a
                 simple yet profound mission: to create spaces that seamlessly blend timeless elegance with contemporary
                 functionality.
               </p>
 
-              <p>
+                <p>
                 What started as a passion project in a small Manhattan studio has evolved into an award-winning design
                 firm recognized for our innovative approach to luxury interiors. Our journey has been marked by a
-                commitment to excellence, attention to detail, and an unwavering dedication to our clients' visions.
+                commitment to excellence, attention to detail, and an unwavering dedication to our clients&apos; visions.
               </p>
 
-              <p>
-                Over the years, we've had the privilege of transforming over 150 spaces, from intimate residential
+                <p>
+                Over the years, we&apos;ve had the privilege of transforming over 150 spaces, from intimate residential
                 projects to large-scale commercial developments. Each project has taught us something new, refined our
                 process, and deepened our understanding of how thoughtful design can enhance the human experience.
               </p>
 
-              <p>
+                <p>
                 Today, our team of talented designers, architects, and craftspeople continues to push the boundaries of
                 interior design, always with the goal of creating spaces that are not just beautiful, but truly
                 transformative.

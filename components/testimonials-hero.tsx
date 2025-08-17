@@ -8,7 +8,7 @@ export function TestimonialsHero() {
             <span className="block text-primary">Say About Us</span>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-8">
-            Don't just take our word for it. Hear from the clients whose spaces we've had the privilege to transform,
+            Don&apos;t just take our word for it. Hear from the clients whose spaces we&apos;ve had the privilege to transform,
             and discover why they chose to trust us with their most important projects.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
