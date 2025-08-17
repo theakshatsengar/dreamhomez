@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export function OfficeMap() {
   return (
     <section className="py-16 lg:py-24 bg-background">
@@ -5,7 +7,7 @@ export function OfficeMap() {
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-serif text-foreground mb-6">Visit Our Studio</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Located in the heart of New York's Design District, our studio showcases the latest in luxury materials,
+            Located in the heart of New York&apos;s Design District, our studio showcases the latest in luxury materials,
             furniture, and design inspiration.
           </p>
         </div>
@@ -14,9 +16,11 @@ export function OfficeMap() {
           {/* Map Placeholder */}
           <div className="relative">
             <div className="aspect-video bg-muted rounded-lg overflow-hidden">
-              <img
+              <Image
                 src="/placeholder.svg?height=400&width=600"
                 alt="Office location map"
+                width={600}
+                height={400}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-primary/10 flex items-center justify-center">
@@ -30,7 +34,6 @@ export function OfficeMap() {
               </div>
             </div>
           </div>
-
           {/* Location Details */}
           <div className="space-y-6">
             <div>

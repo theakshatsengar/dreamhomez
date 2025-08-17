@@ -1,15 +1,13 @@
-interface BlogPostContentProps {
-  slug: string
-}
+import Image from "next/image"
 
-export function BlogPostContent({ slug }: BlogPostContentProps) {
+export function BlogPostContent() {
   return (
     <section className="py-16 lg:py-24 bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <article className="prose prose-lg max-w-none">
           <div className="space-y-8 text-muted-foreground leading-relaxed">
             <p className="text-xl text-foreground font-serif italic">
-              The intersection of luxury and sustainability is no longer a contradiction—it's the future of interior
+              The intersection of luxury and sustainability is no longer a contradiction—it&apos;s the future of interior
               design. As we move through 2024, discerning clients are increasingly seeking spaces that reflect both
               their refined taste and their environmental values.
             </p>
@@ -19,15 +17,17 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
             </h2>
 
             <p>
-              Today's luxury consumers are more informed and environmentally conscious than ever before. They understand
+              Today&apos;s luxury consumers are more informed and environmentally conscious than ever before. They understand
               that true luxury lies not just in premium materials and craftsmanship, but in the knowledge that their
               choices contribute to a more sustainable future. This shift has fundamentally changed how we approach
               high-end interior design.
             </p>
 
-            <img
+            <Image
               src="/placeholder.svg?height=400&width=800"
               alt="Sustainable luxury living room"
+              width={800}
+              height={400}
               className="w-full rounded-lg shadow-lg my-8"
             />
 
@@ -36,8 +36,8 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
             </h2>
 
             <p>
-              The materials we choose define the character of a space. In 2024, we're seeing remarkable innovations in
-              sustainable luxury materials that don't compromise on beauty or quality:
+              The materials we choose define the character of a space. In 2024, we&apos;re seeing remarkable innovations in
+              sustainable luxury materials that don&apos;t compromise on beauty or quality:
             </p>
 
             <ul className="space-y-3 ml-6">
@@ -60,8 +60,8 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
             </ul>
 
             <blockquote className="border-l-4 border-primary pl-6 my-8 italic text-lg">
-              "Sustainable design isn't about limitation—it's about innovation. When we embrace eco-conscious materials,
-              we often discover solutions that are more beautiful and meaningful than conventional alternatives."
+              &quot;Sustainable design isn&apos;t about limitation—it&apos;s about innovation. When we embrace eco-conscious materials,
+              we often discover solutions that are more beautiful and meaningful than conventional alternatives.&quot;
             </blockquote>
 
             <h2 className="text-2xl font-serif font-semibold text-foreground mt-12 mb-6">
@@ -73,16 +73,18 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
               design decisions. Here are the key strategies we employ:
             </p>
 
-            <img
+            <Image
               src="/placeholder.svg?height=400&width=800"
               alt="Sustainable design process"
+              width={800}
+              height={400}
               className="w-full rounded-lg shadow-lg my-8"
             />
 
             <h3 className="text-xl font-serif font-semibold text-foreground mt-8 mb-4">Timeless Design Philosophy</h3>
 
             <p>
-              The most sustainable design is one that doesn't need to be replaced. We focus on creating timeless
+              The most sustainable design is one that doesn&apos;t need to be replaced. We focus on creating timeless
               interiors that will remain beautiful and relevant for decades, using classic proportions, quality
               craftsmanship, and enduring materials.
             </p>
@@ -99,7 +101,7 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
 
             <p>
               As we continue through 2024 and beyond, the integration of sustainability and luxury will only deepen.
-              We're excited to be part of this evolution, creating spaces that are not only beautiful but also
+              We&apos;re excited to be part of this evolution, creating spaces that are not only beautiful but also
               responsible. The future of luxury design is sustainable, and that future is now.
             </p>
           </div>

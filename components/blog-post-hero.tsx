@@ -1,12 +1,9 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar, Clock, User, Share2 } from "lucide-react"
+import Image from "next/image"
 
-interface BlogPostHeroProps {
-  slug: string
-}
-
-export function BlogPostHero({ slug }: BlogPostHeroProps) {
+export function BlogPostHero() {
   // In a real app, this would fetch post data based on slug
   const post = {
     title: "Sustainable Luxury: The Design Trends Defining 2024",
@@ -23,7 +20,7 @@ export function BlogPostHero({ slug }: BlogPostHeroProps) {
     <section className="relative pt-20 pb-16 lg:pt-28 lg:pb-24">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img src={post.image || "/placeholder.svg"} alt={post.title} className="w-full h-full object-cover" />
+        <Image src={post.image || "/placeholder.svg"} alt={post.title} width={1200} height={600} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/50" />
       </div>
 

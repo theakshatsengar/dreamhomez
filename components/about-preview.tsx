@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 export function AboutPreview() {
   return (
@@ -8,9 +9,11 @@ export function AboutPreview() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
           <div className="relative">
-            <img
+            <Image
               src="/image.png?height=600&width=800"
               alt="Interior design studio"
+              width={800}
+              height={600}
               className="w-full h-[500px] lg:h-[600px] object-cover rounded-lg shadow-lg"
             />
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent rounded-lg opacity-20" />
@@ -26,7 +29,7 @@ export function AboutPreview() {
             </div>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              For over a decade, we've been transforming homes and commercial spaces into extraordinary environments
+              For over a decade, we&apos;ve been transforming homes and commercial spaces into extraordinary environments
               that seamlessly blend functionality with timeless beauty. Our approach is deeply personal, ensuring every
               project reflects the unique personality and lifestyle of our clients.
             </p>

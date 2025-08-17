@@ -1,12 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Linkedin, Mail } from "lucide-react"
+import Image from "next/image"
 
-interface BlogPostAuthorProps {
-  slug: string
-}
-
-export function BlogPostAuthor({ slug }: BlogPostAuthorProps) {
+export function BlogPostAuthor() {
   // In a real app, this would fetch author data based on slug
   const author = {
     name: "Elena Rodriguez",
@@ -21,9 +18,11 @@ export function BlogPostAuthor({ slug }: BlogPostAuthorProps) {
         <Card className="border-0 shadow-lg bg-card">
           <CardContent className="p-8 lg:p-12">
             <div className="flex items-start space-x-6">
-              <img
+              <Image
                 src={author.image || "/placeholder.svg"}
                 alt={author.name}
+                width={96}
+                height={96}
                 className="w-20 h-20 lg:w-24 lg:h-24 rounded-full object-cover flex-shrink-0"
               />
               <div className="flex-1">

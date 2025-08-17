@@ -82,17 +82,21 @@ export function ProjectDetails({ slug }: ProjectDetailsProps) {
                 <h3 className="text-2xl font-serif font-semibold text-foreground mb-4">Before & After</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <img
+                    <Image
                       src="/placeholder.svg?height=200&width=300"
                       alt="Before renovation"
+                      width={300}
+                      height={200}
                       className="w-full h-32 object-cover rounded-lg"
                     />
                     <p className="text-sm text-muted-foreground mt-2 text-center">Before</p>
                   </div>
                   <div>
-                    <img
+                    <Image
                       src="/placeholder.svg?height=200&width=300"
                       alt="After renovation"
+                      width={300}
+                      height={200}
                       className="w-full h-32 object-cover rounded-lg"
                     />
                     <p className="text-sm text-muted-foreground mt-2 text-center">After</p>

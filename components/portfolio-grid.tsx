@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, MapPin, Calendar } from "lucide-react"
+import Image from "next/image"
 
 export function PortfolioGrid() {
   const [activeFilter, setActiveFilter] = useState("All")
@@ -124,9 +125,11 @@ export function PortfolioGrid() {
               }`}
             >
               <div className="relative">
-                <img
+                <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
+                  width={800}
+                  height={600}
                   className={`w-full object-cover group-hover:scale-105 transition-transform duration-300 ${
                     project.featured ? "h-64 lg:h-80" : "h-48 lg:h-64"
                   }`}

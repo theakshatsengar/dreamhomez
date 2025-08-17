@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 export function FeaturedProjects() {
   const [currentProject, setCurrentProject] = useState(0)
@@ -59,9 +60,11 @@ export function FeaturedProjects() {
             <div className="grid lg:grid-cols-2">
               {/* Image */}
               <div className="relative h-64 lg:h-96">
-                <img
+                <Image
                   src={projects[currentProject].image || "/placeholder.svg"}
                   alt={projects[currentProject].title}
+                  width={800}
+                  height={600}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-4 left-4">
@@ -92,6 +95,7 @@ export function FeaturedProjects() {
               {projects.map((_, index) => (
                 <button
                   key={index}
+                  aria-label={`Go to project ${index + 1}`}
                   className={`w-3 h-3 rounded-full transition-colors duration-200 ${
                     index === currentProject ? "bg-primary" : "bg-border"
                   }`}

@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Calendar, Clock, User } from "lucide-react"
+import Image from "next/image"
 
 export function FeaturedPost() {
   const featuredPost = {
@@ -29,9 +30,11 @@ export function FeaturedPost() {
           <div className="lg:flex">
             {/* Image */}
             <div className="lg:w-1/2">
-              <img
+              <Image
                 src={featuredPost.image || "/placeholder.svg"}
                 alt={featuredPost.title}
+                width={1200}
+                height={600}
                 className="w-full h-64 lg:h-full object-cover"
               />
             </div>

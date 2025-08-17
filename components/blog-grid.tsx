@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Calendar, Clock, User } from "lucide-react"
@@ -80,15 +81,17 @@ export function BlogGrid() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post, index) => (
+          {blogPosts.map((post) => (
             <Card
               key={post.id}
               className="group overflow-hidden border-0 shadow-lg bg-card hover:shadow-xl transition-all duration-300"
             >
               <div className="relative">
-                <img
+                <Image
                   src={post.image || "/placeholder.svg"}
                   alt={post.title}
+                  width={600}
+                  height={400}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4">
