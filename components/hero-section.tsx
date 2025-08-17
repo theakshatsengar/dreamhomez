@@ -6,67 +6,144 @@ import React from "react"
 export function HeroSection() {
   // Scroll-based video control
   React.useEffect(() => {
-    const video = document.getElementById('hero-bg-video') as HTMLVideoElement | null;
-    if (!video) return;
-    let videoPlayed = false;
-    let scrollProgress = 0;
-    let scrollDelta = 0;
-    let animating = false;
+    const video = document.getElementById("hero-bg-video") as HTMLVideoElement | null
+    if (!video) return
 
-    // Lock scroll initially
-    document.body.style.overflow = 'hidden';
+    // Keep the page locked until the video has been driven to the end
+    document.body.style.overflow = "hidden"
 
-    // Wait for video to be ready
-    const ensureReady = () => {
-      return new Promise<void>((resolve) => {
-        if (video.readyState >= 2) {
-          resolve();
-        } else {
-          video.addEventListener('loadeddata', () => resolve(), { once: true });
+    let rafId: number | null = null
+    let running = false
+    let videoPlayed = false
+
+  // targetProgress is 0..1 based on accumulated wheel/touch input
+  let targetProgress = 0
+  // displayedTime is the smooth, interpolated time we write to the video
+  let displayedTime = 0
+  // remember last input delta so we can nudge native scroll after unlocking
+  let lastInputDelta = 0
+
+    const clamp = (v: number, a = 0, b = 1) => Math.max(a, Math.min(b, v))
+
+    // Amount of wheel (px) required to move progress from 0 -> 1; tuned for UX
+    let scrollRange = Math.max(window.innerHeight * 1.2, 600)
+
+    const onResize = () => {
+      scrollRange = Math.max(window.innerHeight * 1.2, 600)
+    }
+
+    const startLoop = () => {
+      if (running) return
+      running = true
+      const loop = () => {
+        // only run when video metadata is available
+        if (video.readyState >= 2 && video.duration) {
+          const targetTime = targetProgress * video.duration
+          // ease displayedTime toward targetTime
+          const ease = 0.12
+          displayedTime += (targetTime - displayedTime) * ease
+          // write to video
+          try {
+            video.currentTime = displayedTime
+          } catch {
+            // ignore timing errors
+          }
+
+          // Unlock slightly early so the page begins scrolling before video fully ends (0.5s pre-roll)
+          if (
+            !videoPlayed &&
+            (targetProgress >= 1 || displayedTime >= Math.max(0, video.duration - 0.5))
+          ) {
+            videoPlayed = true
+            document.body.style.overflow = ""
+            // Nudge native page scroll so the user's continued scroll moves the page naturally
+            try {
+              const nudge = lastInputDelta || 1
+              window.scrollBy({ top: nudge, behavior: "auto" })
+            } catch {
+              /* ignore */
+            }
+          }
         }
-      });
-    };
 
-    const maxScroll = window.innerHeight * 1.2; // Amount of scroll needed to play full video
-
-    const animateVideo = async () => {
-      await ensureReady();
-      if (videoPlayed || !video.duration) return;
-      // Process scrollDelta in small increments for smoothness
-      if (Math.abs(scrollDelta) > 0.1) {
-        scrollProgress += scrollDelta;
-        scrollDelta = 0;
-        // Clamp scrollProgress
-        scrollProgress = Math.max(0, Math.min(maxScroll, scrollProgress));
-        // Map scrollProgress to video duration
-        const progressRatio = scrollProgress / maxScroll;
-        const newTime = progressRatio * video.duration;
-        video.currentTime = newTime;
-        // Unlock scroll if video is fully played
-        if (progressRatio >= 1) {
-          videoPlayed = true;
-          document.body.style.overflow = '';
-        }
+        rafId = requestAnimationFrame(loop)
       }
-      animating = false;
-    };
 
-    const handleScroll = async (e: WheelEvent) => {
-      if (!videoPlayed && video.duration) {
-        e.preventDefault();
-        scrollDelta += e.deltaY;
-        if (!animating) {
-          animating = true;
-          requestAnimationFrame(animateVideo);
-        }
+      rafId = requestAnimationFrame(loop)
+    }
+
+    const stopLoop = () => {
+      if (rafId != null) cancelAnimationFrame(rafId)
+      rafId = null
+      running = false
+    }
+
+    // Wheel handler — accumulate delta and prevent page scroll while locking
+    const handleWheel = (e: WheelEvent) => {
+      if (videoPlayed) return
+      e.preventDefault()
+      lastInputDelta = e.deltaY
+      const delta = e.deltaY / scrollRange
+      targetProgress = clamp(targetProgress + delta)
+      startLoop()
+    }
+
+    // Touch support (mobile) — translate vertical swipe into progress
+    let lastTouchY: number | null = null
+    const handleTouchStart = (e: TouchEvent) => {
+      if (videoPlayed) return
+      lastTouchY = e.touches[0]?.clientY ?? null
+    }
+    const handleTouchMove = (e: TouchEvent) => {
+      if (videoPlayed || lastTouchY == null) return
+      const y = e.touches[0]?.clientY ?? 0
+      const deltaPx = lastTouchY - y
+      lastInputDelta = deltaPx
+      const delta = deltaPx / scrollRange
+      targetProgress = clamp(targetProgress + delta)
+      lastTouchY = y
+      startLoop()
+      e.preventDefault()
+    }
+    const handleTouchEnd = () => {
+      lastTouchY = null
+    }
+
+    // Keyboard fallback: PageDown / ArrowDown
+    const handleKey = (e: KeyboardEvent) => {
+      if (videoPlayed) return
+      if (e.key === "PageDown" || e.key === "ArrowDown") {
+        lastInputDelta = 120
+        targetProgress = clamp(targetProgress + 0.15)
+        startLoop()
+        e.preventDefault()
+      } else if (e.key === "PageUp" || e.key === "ArrowUp") {
+        lastInputDelta = -120
+        targetProgress = clamp(targetProgress - 0.15)
+        startLoop()
+        e.preventDefault()
       }
-    };
+    }
 
-    window.addEventListener('wheel', handleScroll, { passive: false });
+    // Add listeners
+    window.addEventListener("wheel", handleWheel, { passive: false })
+    window.addEventListener("touchstart", handleTouchStart, { passive: false })
+    window.addEventListener("touchmove", handleTouchMove, { passive: false })
+    window.addEventListener("touchend", handleTouchEnd)
+    window.addEventListener("keydown", handleKey)
+    window.addEventListener("resize", onResize)
+
+    // Clean up
     return () => {
-      window.removeEventListener('wheel', handleScroll);
-      document.body.style.overflow = '';
-    };
+      window.removeEventListener("wheel", handleWheel)
+      window.removeEventListener("touchstart", handleTouchStart)
+      window.removeEventListener("touchmove", handleTouchMove)
+      window.removeEventListener("touchend", handleTouchEnd)
+      window.removeEventListener("keydown", handleKey)
+      window.removeEventListener("resize", onResize)
+      stopLoop()
+      document.body.style.overflow = ""
+    }
   }, []);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -75,8 +152,7 @@ export function HeroSection() {
         <video
           id="hero-bg-video"
           src="/video.mp4"
-          className="w-full h-full object-cover"
-          style={{ pointerEvents: 'none' }}
+          className="w-full h-full object-cover pointer-events-none"
           muted
           playsInline
         />
