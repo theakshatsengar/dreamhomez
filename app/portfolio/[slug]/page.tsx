@@ -6,21 +6,15 @@ import { ProjectDetails } from "@/components/project-details"
 import { ProjectTestimonial } from "@/components/project-testimonial"
 import { RelatedProjects } from "@/components/related-projects"
 
-interface ProjectPageProps {
-  params: {
-    slug: string
-  }
-}
-
-export default function ProjectPage({ params }: ProjectPageProps) {
+export default function ProjectPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <ProjectHero slug={params.slug} />
-      <ProjectGallery slug={params.slug} />
-      <ProjectDetails slug={params.slug} />
-      <ProjectTestimonial slug={params.slug} />
-      <RelatedProjects slug={params.slug} />
+  <ProjectHero />
+  <ProjectGallery />
+  <ProjectDetails />
+  <ProjectTestimonial />
+  <RelatedProjects />
       <Footer />
     </main>
   )
