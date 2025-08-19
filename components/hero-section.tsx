@@ -40,8 +40,21 @@ export function HeroSection() {
         if (video.readyState >= 2 && video.duration) {
           const targetTime = targetProgress * video.duration
           // ease displayedTime toward targetTime
-          const ease = 0.12
-          displayedTime += (targetTime - displayedTime) * ease
+          // Adaptive easing: increase easing when the difference is small so slow scrolls feel responsive,
+          // but allow larger differences to interpolate smoothly.
+          const diff = targetTime - displayedTime
+          // base easing; tuned for smoothness
+          const baseEase = 0.12
+          // adapt based on absolute time difference (seconds)
+          const adaptive = Math.min(0.5, Math.abs(diff) / 0.5)
+          const ease = baseEase + adaptive * 0.25
+
+          // If we're very close, snap to target to avoid tiny invisible lags
+          if (Math.abs(diff) < 0.02) {
+            displayedTime = targetTime
+          } else {
+            displayedTime += diff * ease
+          }
           // write to video
           try {
             video.currentTime = displayedTime
@@ -82,8 +95,9 @@ export function HeroSection() {
     const handleWheel = (e: WheelEvent) => {
       if (videoPlayed) return
       e.preventDefault()
+      // Slightly increase sensitivity for subtle inputs so slow scrolls advance the video more noticeably
       lastInputDelta = e.deltaY
-      const delta = e.deltaY / scrollRange
+      const delta = (e.deltaY * 1.2) / scrollRange
       targetProgress = clamp(targetProgress + delta)
       startLoop()
     }
